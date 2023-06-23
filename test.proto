@@ -1,0 +1,9 @@
+syntax = "proto3";
+option go_package = "./";
+
+
+message Test {
+            string field1 = 1;
+            string field2 = 2;
+            int32 field3 = 3;
+}
