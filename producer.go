@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"memphis-demo/testpb"
 	"os"
 
 	"github.com/memphisdev/memphis.go"
@@ -10,11 +11,13 @@ import (
 func main() {
 	conn, err := memphis.Connect("localhost", "go.user", memphis.Password("PASSWORD"))
 	if err != nil {
+		fmt.Println("Connection failed: %v", err)
 		os.Exit(1)
 	}
 	defer conn.Close()
 	p, err := conn.CreateProducer("test-station", "go.producer")
 	if err != nil {
+		fmt.Println("Producer failed: %v", err)
 		os.Exit(1)
 	}
 
@@ -27,7 +30,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	msg := Test{
+	msg := testpb.Test{
 		Field1: "Hello",
 		Field2: "World",
 		Field3: 42,
